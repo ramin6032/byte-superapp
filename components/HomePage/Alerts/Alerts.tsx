@@ -1,22 +1,19 @@
 "use client";
 
 import { ChevronLeft, Info, X, TriangleAlert } from "lucide-react";
+import { useState } from "react";
 
 export function Alerts() {
-  return (
-    <section className="bg-white rounded-[24px] shadow-[0px_4px_12px_0px_rgba(175,186,205,0.37)] p-2">
-      <div className="flex items-center justify-between py-2 text-black/60">
-        <h2 className="text-blue-900 text-[14px] font-bold flex-1 text-right pr-4">
-          هشدارها (3)
-        </h2>
-        <span className=" text-[10px] font-normal">مشاهده همه</span>
-        <ChevronLeft strokeWidth={1} size={18} />
-      </div>
+  const [isClose, setIsClose] = useState(false);
 
+  if (isClose) return;
+
+  return (
+    <section>
       {/* Alert Cards */}
       <div className=" rounded-[16px] space-y-2 ">
         {/* Alert 1 */}
-        <div className="bg-[#F3F7FE] rounded-[16px] p-2 flex items-center gap-2.5">
+        <div className="bg-white rounded-[16px] p-2 flex items-center gap-2.5 border border-blue-950/20">
           <div className="flex items-center gap-2 w-full">
             <TriangleAlert
               strokeWidth={1}
@@ -32,7 +29,12 @@ export function Alerts() {
               </p>
             </div>
           </div>
-          <X strokeWidth={1} size={20} className="text-black/60" />
+          <X
+            strokeWidth={1}
+            size={20}
+            className="text-black/60"
+            onClick={() => setIsClose(true)}
+          />
         </div>
 
         {/* Alert 2 */}
