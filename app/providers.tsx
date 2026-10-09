@@ -1,5 +1,7 @@
 "use client";
 
+import { Header } from "@/components/HomePage/Header/Header";
+import { Navbar } from "@/components/HomePage/Navbar/Navbar";
 /**
  * فراهم‌کننده‌های سراسری اپلیکیشن (Ant Design، RTL، تم، لوکال).
  *
@@ -60,7 +62,15 @@ const theme: ThemeConfig = {
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
     <ConfigProvider direction="rtl" locale={faIR} theme={theme}>
-      <AntdApp>{children}</AntdApp>
+      <AntdApp>
+        <div className="min-h-dvh h-dvh bg-[#F3F7FE] ">
+          <div className="w-full max-w-xl h-full flex flex-col justify-between mx-auto">
+            {children}
+            {/* Bottom Navigation */}
+            <Navbar />
+          </div>
+        </div>
+      </AntdApp>
     </ConfigProvider>
   );
 }

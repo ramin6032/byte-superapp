@@ -20,14 +20,11 @@ export function Mokhaberat() {
         اینترنت مخابرات
       </h2>
 
-      <div className="grid grid-cols-3 gap-x-2 gap-y-2 text-[12px] font-medium">
+      <div className="grid grid-cols-2 gap-x-2 gap-y-2 text-[12px] font-medium">
         {/* Service Card 1 */}
-        <ServiceCard title="اینترنت پرسرعت" latin="ADSL" />
+        <ServiceCard title="اینترنت پرسرعت" latin="ADSL/VDSL" />
 
         {/* Service Card 2 */}
-        <ServiceCard title="اینترنت پرسرعت" latin="VDSL" />
-
-        {/* Service Card 3 */}
         <ServiceCard title=" فیبر نوری" latin="FTTH" />
       </div>
     </section>

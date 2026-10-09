@@ -1,0 +1,18 @@
+[
+  {
+    "id": "traffic-warning",
+    "type": "warning",
+    "title": "ترافیک مصرفی شما به 80% رسید",
+    "description": "برای جلوگیری از کاهش سرعت بسته افزایش حجم تهیه کنید.",
+    "icon": "triangle-alert",
+    "duration": 0
+  },
+  {
+    "id": "maintenance-info",
+    "type": "info",
+    "title": "تعمیرات در منطقه شما",
+    "description": "از ساعت 18:00 الی 20:00",
+    "icon": "info",
+    "duration": 0
+  }
+]

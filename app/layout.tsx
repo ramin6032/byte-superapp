@@ -104,17 +104,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         "antialiased",
         myFont.className,
         myFont.variable,
-        "font-sans"
+        "font-sans",
       )}
     >
-      <body className="min-h-full flex flex-col">
-        <div className="min-h-dvh h-dvh bg-[#F3F7FE] ">
-          <div className="w-full max-w-xl h-full flex flex-col justify-between mx-auto">
-            <AntdRegistry>
-              <Providers>{children}</Providers>
-            </AntdRegistry>
-          </div>
-        </div>
+      <body className="min-h-full w-full max-w-xl mx-auto">
+        <AntdRegistry>
+          <Providers>{children}</Providers>
+        </AntdRegistry>
       </body>
     </html>
   );

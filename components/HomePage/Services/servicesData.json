@@ -1,0 +1,44 @@
+{
+  "services": [
+    {
+      "id": "wireless",
+      "icon": "radio-tower-icon.png",
+      "label": "وایرلس"
+    },
+    {
+      "id": "hotspot",
+      "icon": "wifi-icon.png",
+      "label": "هات اسپات"
+    },
+    {
+      "id": "network",
+      "icon": "network-icon.png",
+      "label": "شبکه"
+    },
+    {
+      "id": "adsl",
+      "icon": "router-icon.png",
+      "label": "ADSL"
+    },
+    {
+      "id": "camera",
+      "icon": "camera-icon.png",
+      "label": "دوربین"
+    },
+    {
+      "id": "complex",
+      "icon": "building-icon.png",
+      "label": "مجتمع"
+    },
+    {
+      "id": "lte",
+      "icon": "signal-icon.png",
+      "label": "LTE"
+    },
+    {
+      "id": "network-lte",
+      "icon": "network-icon.png",
+      "label": "شبکه"
+    }
+  ]
+}

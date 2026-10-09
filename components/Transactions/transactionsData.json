@@ -1,0 +1,130 @@
+{
+  "transactions": [
+    {
+      "id": "txn_traffic_001",
+      "type": "traffic",
+      "title": "خرید ترافیک",
+      "description": "بسته ۱۰ گیگابایت اینترنت فیبر نوری",
+      "amount": 80000,
+      "date": "۱۴۰۴/۰۷/۱۵",
+      "status": "success",
+      "info": [
+        { "label": "شماره مجازی سرویس", "value": "۳۱۲۳۴۵۶۷۸" },
+        { "label": "کد پیگیری", "value": "TR-98234512" },
+        { "label": "حجم ترافیک", "value": "۱۰ گیگابایت" },
+        { "label": "مدت اعتبار", "value": "۳۰ روز" },
+        { "label": "روش پرداخت", "value": "کیف پول شارژ" }
+      ]
+    },
+    {
+      "id": "txn_renewal_001",
+      "type": "renewal",
+      "title": "تمدید سرویس",
+      "description": "تمدید ۱۲ ماهه اینترنت فیبر نوری ۱۰۰۰ مگابیت",
+      "amount": 6500000,
+      "date": "۱۴۰۴/۰۷/۱۰",
+      "status": "success",
+      "info": [
+        { "label": "شماره مجازی سرویس", "value": "۳۱۲۳۴۵۶۷۸" },
+        { "label": "کد پیگیری", "value": "RN-77120345" },
+        { "label": "مدت تمدید", "value": "۱۲ ماهه" },
+        { "label": "سرعت سرویس", "value": "۱۰۰۰ مگابیت" },
+        { "label": "روش پرداخت", "value": "کارت بانکی" }
+      ]
+    },
+    {
+      "id": "txn_ip_001",
+      "type": "ip",
+      "title": "خرید آی‌پی",
+      "description": "آی‌پی ثابت ۴ عددی ایران",
+      "amount": 1450000,
+      "date": "۱۴۰۴/۰۶/۲۸",
+      "status": "success",
+      "info": [
+        { "label": "کد پیگیری", "value": "IP-55409812" },
+        { "label": "تعداد آی‌پی", "value": "۴ عدد" },
+        { "label": "نوع آی‌پی", "value": "ثابت ایران" },
+        { "label": "مدت اعتبار", "value": "۱ ماهه" },
+        { "label": "روش پرداخت", "value": "کیف پول شارژ" }
+      ]
+    },
+    {
+      "id": "txn_traffic_002",
+      "type": "traffic",
+      "title": "خرید ترافیک",
+      "description": "بسته ۵ گیگابایت اینترنت ADSL",
+      "amount": 55000,
+      "date": "۱۴۰۴/۰۷/۱۸",
+      "status": "pending",
+      "info": [
+        { "label": "شماره مجازی سرویس", "value": "۳۸۷۶۵۴۳۲" },
+        { "label": "کد پیگیری", "value": "TR-99341207" },
+        { "label": "حجم ترافیک", "value": "۵ گیگابایت" },
+        { "label": "مدت اعتبار", "value": "۳۰ روز" },
+        { "label": "روش پرداخت", "value": "درگاه پرداخت" }
+      ]
+    },
+    {
+      "id": "txn_equipment_001",
+      "type": "equipment",
+      "title": "خرید تجهیزات",
+      "description": "روتر وای‌فای ۶",
+      "amount": 6500000,
+      "date": "۱۴۰۴/۰۶/۲۰",
+      "status": "success",
+      "info": [
+        { "label": "کد پیگیری", "value": "EQ-33029876" },
+        { "label": "کد پستی", "value": "۱۲۳۴۵۶۷۸۹۰" },
+        { "label": "تعداد", "value": "۱ عدد" },
+        { "label": "روش پرداخت", "value": "کارت بانکی" }
+      ]
+    },
+    {
+      "id": "txn_renewal_002",
+      "type": "renewal",
+      "title": "تمدید سرویس",
+      "description": "تمدید ۶ ماهه اینترنت VDSL ۵۰ مگابیت",
+      "amount": 690000,
+      "date": "۱۴۰۴/۰۶/۱۲",
+      "status": "failed",
+      "info": [
+        { "label": "شماره مجازی سرویس", "value": "۳۸۷۶۵۴۳۲" },
+        { "label": "کد پیگیری", "value": "RN-12045678" },
+        { "label": "مدت تمدید", "value": "۶ ماهه" },
+        { "label": "سرعت سرویس", "value": "۵۰ مگابیت" },
+        { "label": "دلیل عدم موفقیت", "value": "عدم تحویل به درگاه پرداخت" }
+      ]
+    },
+    {
+      "id": "txn_subscription_001",
+      "type": "subscription",
+      "title": "خرید اشتراک",
+      "description": "اشتراک اینترنت موبایل ۵G",
+      "amount": 280000,
+      "date": "۱۴۰۴/۰۶/۰۵",
+      "status": "success",
+      "info": [
+        { "label": "شماره سرویس", "value": "۰۹۱۲۱۲۳۴۵۶۷" },
+        { "label": "کد پیگیری", "value": "SB-88412309" },
+        { "label": "مدت اشتراک", "value": "۳۰ روز" },
+        { "label": "روش پرداخت", "value": "کیف پول شارژ" }
+      ]
+    },
+    {
+      "id": "txn_ip_002",
+      "type": "ip",
+      "title": "خرید آی‌پی",
+      "description": "آی‌پی اختصاصی ۱ عددی بین‌المللی",
+      "amount": 2900000,
+      "date": "۱۴۰۴/۰۷/۱۹",
+      "status": "pending",
+      "info": [
+        { "label": "کد پیگیری", "value": "IP-61023477" },
+        { "label": "تعداد آی‌پی", "value": "۱ عدد" },
+        { "label": "نوع آی‌پی", "value": "اختصاصی بین‌المللی" },
+        { "label": "مدت اعتبار", "value": "۱ ماهه" },
+        { "label": "روش پرداخت", "value": "درگاه پرداخت" }
+      ]
+    }
+  ]
+}
