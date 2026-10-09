@@ -1,148 +1,64 @@
 "use client";
 
+/**
+ * بخش خدمات شرکت بایت در صفحه خانه.
+ *
+ * خدمات قابل ارائه شرکت را در دو ردیف چهارتایی از آیتم‌های آیکون‌دار نمایش می‌دهد.
+ */
+
 import Image from "next/image";
 
+/**
+ * رندر کردن بخش خدمات شرکت بایت.
+ *
+ * عنوان بخش و هشت آیتم خدمات را در قالب دو شبکه چهارستونی نمایش می‌دهد.
+ *
+ * @returns عنصر بخش شامل عنوان و شبکه آیتم‌های خدمات
+ */
 export function Services() {
   return (
-    <section className="bg-white rounded-[24px] shadow-[0px_4px_12px_0px_rgba(175,186,205,0.37)] p-4 space-y-2">
+    <section className="bg-white rounded-3xl shadow-[0px_4px_12px_0px_rgba(175,186,205,0.37)] p-4 space-y-2">
       <h2 className="text-blue-900 text-[14px] font-bold flex-1 text-right ">
         خدمات شرکت بایت
       </h2>
 
       {/* Row 1 */}
-      <div className="grid grid-cols-4 gap-2">
-        <div className="bg-[#F3F6FE] rounded-[18px] w-full py-1.5 flex flex-col items-center justify-center justify-self-center">
-          <Image
-            src="/images/router-icon.png"
-            alt="Router"
-            width={42}
-            height={42}
-          />
-          <p className="text-[#011961] text-[13px] font-bold">ADSL2+</p>
-        </div>
+      <div className="grid grid-cols-4 gap-2 font-medium">
+        <ServiceItem iconSrc="/images/radio-tower-icon.png" label="وایرلس" />
 
-        <div className="bg-[#F3F6FE] rounded-[18px] w-full py-1.5 flex flex-col items-center justify-center justify-self-center">
-          <Image
-            src="/images/radio-tower-icon.png"
-            alt="Radio Tower"
-            width={42}
-            height={42}
-          />
-          <p className="text-[#081D5D] text-[13px] font-bold  text-center">
-            وایرلس
-          </p>
-        </div>
+        <ServiceItem iconSrc="/images/wifi-icon.png" label="هات اسپات" />
 
-        <div className="bg-[#F3F6FE] rounded-[18px] w-full py-1.5 flex flex-col items-center justify-center justify-self-center">
-          <Image
-            src="/images/wifi-icon.png"
-            alt="WiFi"
-            width={42}
-            height={42}
-          />
-          <p className="text-[#081D5D] text-[13px] font-bold">هات اسپات</p>
-        </div>
+        <ServiceItem iconSrc="/images/network-icon.png" label="شبکه" />
 
-        <div className="bg-[#F3F6FE] rounded-[18px] w-full py-1.5 flex flex-col items-center justify-center justify-self-center">
-          <Image
-            src="/images/network-icon.png"
-            alt="Network"
-            width={42}
-            height={42}
-          />
-          <p className="text-[#081D5D] text-[13px] font-bold">شبکه</p>
-        </div>
+        <ServiceItem iconSrc="/images/router-icon.png" label="ADSL" />
       </div>
 
       {/* Row 2 */}
       <div className="grid grid-cols-4 gap-2">
-        <div className="bg-[#F3F6FE] rounded-[18px] w-full py-1.5 flex flex-col items-center justify-center justify-self-center">
-          <Image
-            src="/images/camera-icon.png"
-            alt="Router"
-            width={42}
-            height={42}
-          />
-          <p className="text-[#011961] text-[13px] font-bold">دوربین</p>
-        </div>
-
-        <div className="bg-[#F3F6FE] rounded-[18px] w-full py-1.5 flex flex-col items-center justify-center justify-self-center">
-          <Image
-            src="/images/building-icon.png"
-            alt="Radio Tower"
-            width={42}
-            height={42}
-          />
-          <p className="text-[#081D5D] text-[13px] font-bold  text-center">
-            مجتمع
-          </p>
-        </div>
-
-        <div className="bg-[#F3F6FE] rounded-[18px] w-full py-1.5 flex flex-col items-center justify-center justify-self-center">
-          <Image
-            src="/images/signal-icon.png"
-            alt="WiFi"
-            width={42}
-            height={42}
-          />
-          <p className="text-[#081D5D] text-[13px] font-bold">LTE</p>
-        </div>
-
-        <div className="bg-[#F3F6FE] rounded-[18px] w-full py-1.5 flex flex-col items-center justify-center justify-self-center">
-          <Image
-            src="/images/network-icon.png"
-            alt="Network"
-            width={42}
-            height={42}
-          />
-          <p className="text-[#081D5D] text-[13px] font-bold">شبکه</p>
-        </div>
-      </div>
-
-      {/* Row 3 (duplicate of Row 1) */}
-      <div className="grid grid-cols-4 gap-2">
-        <div className="bg-[#F3F6FE] rounded-[18px] w-full py-1.5 flex flex-col items-center justify-center justify-self-center">
-          <Image
-            src="/images/router-icon.png"
-            alt="Router"
-            width={42}
-            height={42}
-          />
-          <p className="text-[#011961] text-[13px] font-bold">ADSL2+</p>
-        </div>
-
-        <div className="bg-[#F3F6FE] rounded-[18px] w-full py-1.5 flex flex-col items-center justify-center justify-self-center">
-          <Image
-            src="/images/radio-tower-icon.png"
-            alt="Radio Tower"
-            width={42}
-            height={42}
-          />
-          <p className="text-[#081D5D] text-[13px] font-bold  text-center">
-            وایرلس
-          </p>
-        </div>
-
-        <div className="bg-[#F3F6FE] rounded-[18px] w-full py-1.5 flex flex-col items-center justify-center justify-self-center">
-          <Image
-            src="/images/wifi-icon.png"
-            alt="WiFi"
-            width={42}
-            height={42}
-          />
-          <p className="text-[#081D5D] text-[13px] font-bold">هات اسپات</p>
-        </div>
-
-        <div className="bg-[#F3F6FE] rounded-[18px] w-full py-1.5 flex flex-col items-center justify-center justify-self-center">
-          <Image
-            src="/images/network-icon.png"
-            alt="Network"
-            width={42}
-            height={42}
-          />
-          <p className="text-[#081D5D] text-[13px] font-bold">شبکه</p>
-        </div>
+        <ServiceItem iconSrc="/images/camera-icon.png" label="دوربین" />
+        <ServiceItem iconSrc="/images/building-icon.png" label="مجتمع" />
+        <ServiceItem iconSrc="/images/signal-icon.png" label="LTE" />
+        <ServiceItem iconSrc="/images/network-icon.png" label="شبکه" />
       </div>
     </section>
+  );
+}
+
+/**
+ * آیتم نمایش یک خدمت.
+ *
+ * آیکون و برچسب متنی یک خدمت را در یک کارت قابل کلیک نمایش می‌دهد و برای سادگی دسترس‌پذیری،
+ * برچسب به‌عنوان متن جایگزین تصویر استفاده می‌شود.
+ *
+ * @param props.iconSrc - مسیر فایل آیکون خدمت در پوشه عمومی تصاویر
+ * @param props.label - برچسب متنی خدمت که زیر آیکون نمایش داده می‌شود
+ * @returns عنصر آیتم خدمت شامل آیکون و برچسب متنی
+ */
+function ServiceItem({ iconSrc, label }: { iconSrc: string; label: string }) {
+  return (
+    <div className="bg-[#F3F6FE] hover:bg-[#F3F6FE]/70 hover:shadow rounded-[18px] w-full py-1 flex flex-col items-center justify-center justify-self-center">
+      <Image src={iconSrc} alt={label} width={38} height={38} />
+      <p className="text-[#081D5D] text-[12px] font-medium">{label}</p>
+    </div>
   );
 }

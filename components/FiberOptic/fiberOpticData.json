@@ -1,0 +1,22 @@
+{
+  "operations": [
+    {
+      "id": "fiber-request",
+      "title": "درخواست فیبر نوری",
+      "subtitle": "ثبت درخواست جدید برای سرویس اینترنت فیبر نوری",
+      "icon": "cable"
+    },
+    {
+      "id": "service-renewal",
+      "title": "تمدید سرویس",
+      "subtitle": "تمدید مدت اشتراک سرویس فیبر نوری",
+      "icon": "refresh"
+    },
+    {
+      "id": "service-charge",
+      "title": "شارژ مجدد",
+      "subtitle": "خرید ترافیک و شارژ مجدد سرویس فیبر نوری",
+      "icon": "rotate"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "operations": [
+    {
+      "id": "adsl-request",
+      "title": "درخواست ADSL",
+      "subtitle": "ثبت درخواست جدید برای سرویس اینترنت ADSL",
+      "icon": "cable"
+    },
+    {
+      "id": "service-renewal",
+      "title": "تمدید سرویس",
+      "subtitle": "تمدید مدت اشتراک سرویس اینترنت ADSL",
+      "icon": "refresh"
+    },
+    {
+      "id": "service-charge",
+      "title": "شارژ مجدد",
+      "subtitle": "خرید ترافیک و شارژ مجدد سرویس اینترنت ADSL",
+      "icon": "rotate"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "groups": [
+    {
+      "id": "home",
+      "label": "اینترنت خانگی",
+      "subscriptions": [
+        {
+          "id": "sub_01",
+          "username": "09121234567",
+          "label": "اینترنت ADSL 500Mbps"
+        },
+        {
+          "id": "sub_03",
+          "username": "09125556778",
+          "label": "اینترنت فیبرنوری 1000Mbps"
+        }
+      ]
+    },
+    {
+      "id": "mobile",
+      "label": "اینترنت موبایل",
+      "subscriptions": [
+        {
+          "id": "sub_02",
+          "username": "09129876543",
+          "label": "اینترنت موبایل 5G"
+        }
+      ]
+    }
+  ]
+}
