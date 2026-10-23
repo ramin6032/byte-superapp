@@ -1,0 +1,7 @@
+{
+  "entryPoints": ["app/**/*.tsx"],
+  "out": "docs/app",
+  "tsconfig": "tsconfig.json",
+  "excludePrivate": true,
+  "excludeInternal": true
+}

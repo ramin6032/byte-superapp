@@ -35,7 +35,7 @@ export const DURATION_LABELS: DurationLabel[] = [
  * مقدار این ثابت مرجع اعتبارسنجی فناوری در اکشن‌های سمت سرور و همچنین فیلتر
  * طرح‌های سرویس و تجهیزات در کامپوننت‌های کلاینتی است.
  */
-export const SERVICE_TECHNOLOGIES = ["FTTH", "ADSL", "VDSL"] as const;
+export const SERVICE_TECHNOLOGIES = ["FTTH", "ADSL", "VDSL", "BYTE"] as const;
 
 /**
  * نوع فناوری سرویس که از مقادیر ثابت `SERVICE_TECHNOLOGIES` ساخته می‌شود.
@@ -49,6 +49,7 @@ export const TECHNOLOGY_LABELS: Record<ServiceTechnology, string> = {
   FTTH: "فیبر نوری",
   ADSL: "ای‌دی‌اس‌ال",
   VDSL: "وی‌دی‌اس‌ال",
+  BYTE: "بایت",
 };
 
 /**

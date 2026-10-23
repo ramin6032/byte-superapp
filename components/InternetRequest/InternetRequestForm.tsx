@@ -98,7 +98,7 @@ export function InternetRequestForm({
   }
 
   return (
-    <section className="bg-white rounded-3xl shadow-[0px_4px_12px_0px_rgba(175,186,205,0.37)] p-4 space-y-4">
+    <section className="bg-white rounded-3xl  p-4 space-y-4 overflow-y-auto flex-1">
       {showHeader && (
         <header className="space-y-1">
           <h1 className="text-[#081D5D] text-[15px] font-bold text-right">
@@ -109,14 +109,6 @@ export function InternetRequestForm({
           </p>
         </header>
       )}
-
-      <Steps
-        current={current}
-        size="small"
-        responsive
-        className="!mb-4"
-        items={[{ title: "اطلاعات هویتی" }, { title: "سرویس و تجهیزات" }]}
-      />
 
       {current === STEP_IDENTITY ? (
         <IdentityStepForm

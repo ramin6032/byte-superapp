@@ -14,6 +14,8 @@
  */
 import { ChevronLeft, Plus } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { CompanyServicesModal } from "./CompanyServicesModal";
 
 /**
  * مدل اشتراک منفرد.
@@ -51,6 +53,7 @@ export function SubscriptionSelector({
   onRegisterNew?: () => void;
 }) {
   const router = useRouter();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleSelect = (sub: Subscription) => {
     if (onSelect) {
@@ -64,7 +67,7 @@ export function SubscriptionSelector({
     if (onRegisterNew) {
       onRegisterNew();
     } else {
-      router.push("/subscription/register");
+      setIsModalOpen(true);
     }
   };
 
@@ -97,6 +100,12 @@ export function SubscriptionSelector({
         <Plus strokeWidth={1.5} size={18} />
         اشتراک جدید
       </button>
+
+      <CompanyServicesModal
+        open={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onServiceSelect={(service) => router.push(service.route)}
+      />
     </section>
   );
 }

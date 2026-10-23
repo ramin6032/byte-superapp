@@ -9,10 +9,19 @@
  * @returns فرم ورود کامل
  */
 import Image from "next/image";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Alert, Button, Form, Input, Segmented, Space, Typography } from "antd";
+import type { OTPRef } from "antd/es/input/OTP";
 import type { Rule } from "antd/es/form";
 import { Lock, Phone, Send, WifiOff } from "lucide-react";
+import { useCreateOTP } from "@/hooks/useCreateOTP";
+import { useValidateOTP } from "@/hooks/useValidateOTP";
+import { useRefreshToken } from "@/hooks/useRefreshToken";
+import { useDecodeToken } from "@/hooks/useDecodeToken";
+import { useRouter } from "next/navigation";
+import { useQueryClient } from "@tanstack/react-query";
+import { userServicesQueryKey } from "@/lib/user-services-query";
+import { useUserServicesStore } from "@/stores/useUserServicesStore";
 
 /**
  * حالت فعلی فرم ورود.
@@ -22,9 +31,9 @@ type LoginMode = "password" | "otp";
 
 /**
  * مرحله فعلی در جریان OTP.
- * @type {"mobile" | "code"}
+ * @type {"mobile" | "code" | "success"}
  */
-type OtpStep = "mobile" | "code";
+type OtpStep = "mobile" | "code" | "success";
 
 /**
  * مقادیر فرم حالت رمز عبور.
@@ -62,7 +71,7 @@ const MOBILE_PATTERN = /^09\d{9}$/;
  * طول کد OTP (تعداد ارقام).
  * @type {number}
  */
-const OTP_LENGTH = 5;
+const OTP_LENGTH = 6;
 
 /**
  * تبدیل ارقام انگلیسی/عربی به ارقام فارسی.
@@ -97,20 +106,94 @@ const inputSharedProps = {
 };
 
 /**
+ * ذخیره توکن در کوکی مرورگر.
+ *
+ * @param token - توکن دسترسی
+ * @param days - تعداد روز تا انقضا (پیش‌فرض ۷ روز)
+ */
+function setAuthCookie(token: string, days = 7) {
+  if (typeof document === "undefined") return;
+  const expires = new Date(
+    Date.now() + days * 24 * 60 * 60 * 1000,
+  ).toUTCString();
+  document.cookie = `byte_token=${token}; path=/; expires=${expires}; SameSite=Lax`;
+}
+
+/**
+ * خواندن توکن از کوکی مرورگر.
+ *
+ * @returns توکن ذخیره شده یا رشته خالی
+ */
+function getAuthCookie(): string {
+  if (typeof document === "undefined") return "";
+  const match = document.cookie.match(/(?:^|; )byte_token=([^;]*)/);
+  return match ? match[1] : "";
+}
+
+/**
+ * حذف توکن از کوکی مرورگر.
+ */
+function removeAuthCookie() {
+  if (typeof document === "undefined") return;
+  document.cookie =
+    "byte_token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+}
+
+/**
  * رندر صفحه ورود.
  *
  * بسته به `mode` فرم رمز عبور یا جریان دو مرحله‌ای OTP را نمایش می‌دهد و در صورت
- * قطع اینترنت، هشدار آفلاین نشان می‌دهد.
+ * قطع اینترنت، هشدار آفلاین نشان می‌دهد. پس از تایید موفق OTP، توکن دریافت‌شده
+ * در کوکی ذخیره و اطلاعات کاربر از طریق decodeToken استخراج می‌شود.
  *
  * @returns المان فرم ورود
  */
 export default function LoginPage() {
   const [mode, setMode] = useState<LoginMode>("password");
   const [isOnline, setIsOnline] = useState(true);
-  const [submitting, setSubmitting] = useState(false);
   const [otpStep, setOtpStep] = useState<OtpStep>("mobile");
+  const otpInputRef = useRef<OTPRef | null>(null);
   const [otpMobile, setOtpMobile] = useState("");
-  const [sendingCode, setSendingCode] = useState(false);
+  const router = useRouter();
+  const queryClient = useQueryClient();
+  const clearUserServices = useUserServicesStore(
+    (state) => state.clearUserServices,
+  );
+
+  useEffect(() => {
+    queryClient.removeQueries({ queryKey: userServicesQueryKey });
+    clearUserServices();
+  }, [queryClient, clearUserServices]);
+
+  const {
+    sendOTP,
+    isPending: isSendingOtp,
+    error: otpError,
+    reset: resetOTP,
+  } = useCreateOTP();
+
+  const {
+    verifyOTP,
+    isPending: isVerifyingOtp,
+    error: verifyError,
+    data: verifyData,
+    reset: resetVerify,
+  } = useValidateOTP();
+
+  const {
+    refresh: refreshToken,
+    isPending: isRefreshing,
+    error: refreshError,
+    reset: resetRefresh,
+  } = useRefreshToken();
+
+  const {
+    decode: decodeToken,
+    isPending: isDecoding,
+    error: decodeError,
+    data: decodeData,
+    reset: resetDecode,
+  } = useDecodeToken();
 
   useEffect(() => {
     const update = () => setIsOnline(navigator.onLine);
@@ -123,36 +206,56 @@ export default function LoginPage() {
     };
   }, []);
 
-  const handleModeChange = useCallback((value: LoginMode) => {
-    setMode(value);
-    setSubmitting(false);
-    setOtpStep("mobile");
-    setOtpMobile("");
-    setSendingCode(false);
-  }, []);
+  // وقتی مرحله وارد کردن کد نمایش داده می‌شود، فوکوس روی فیلد OTP قرار می‌گیرد
+  useEffect(() => {
+    if (otpStep === "code") {
+      otpInputRef.current?.focus();
+    }
+  }, [otpStep]);
 
-  const handlePasswordFinish = useCallback(() => {
-    setSubmitting(true);
-  }, []);
+  const handleModeChange = useCallback(
+    (value: LoginMode) => {
+      setMode(value);
+      setOtpStep("mobile");
+      setOtpMobile("");
+      resetOTP();
+      resetVerify();
+      resetRefresh();
+      resetDecode();
+    },
+    [resetOTP, resetVerify, resetRefresh, resetDecode],
+  );
 
-  const handleSendCode = useCallback((values: MobileFormValues) => {
-    setOtpMobile(values.mobile);
-    setSendingCode(true);
-    setOtpStep("code");
-  }, []);
+  const handleSendCode = useCallback(
+    async (values: MobileFormValues) => {
+      const result = await sendOTP(values.mobile);
+      if (result?.ok) {
+        setOtpMobile(values.mobile);
+        setOtpStep("code");
+      }
+    },
+    [sendOTP],
+  );
 
-  const handleVerifyCode = useCallback(() => {
-    setSubmitting(true);
-  }, []);
+  const handleVerifyCode = useCallback(
+    async (values: CodeFormValues) => {
+      const result = await verifyOTP(otpMobile, values.code);
+      if (result?.ok) {
+        router.replace("/homePage");
+      }
+    },
+    [otpMobile, verifyOTP, router],
+  );
 
-  const handleResendCode = useCallback(() => {
-    setSendingCode(true);
-  }, []);
+  const handleResendCode = useCallback(async () => {
+    await sendOTP(otpMobile);
+  }, [otpMobile, sendOTP]);
 
   const handleChangeMobile = useCallback(() => {
     setOtpStep("mobile");
-    setSubmitting(false);
-  }, []);
+    resetOTP();
+    resetVerify();
+  }, [resetOTP, resetVerify]);
 
   const passwordRules: Rule[] = [
     { required: true, message: "شماره موبایل یا نام کاربری را وارد کنید." },
@@ -178,17 +281,27 @@ export default function LoginPage() {
         />
       </div>
 
-      <div className="flex flex-1 flex-col px-4">
-        {!isOnline && (
-          <Alert
-            className="!mb-3 !rounded-[18px] !text-[12px]"
-            type="warning"
-            showIcon
-            icon={<WifiOff size={18} strokeWidth={1} />}
-            message="ارتباط شبکه برقرار نیست."
-            description="اتصال اینترنت خود را بررسی کنید و دوباره تلاش کنید."
-          />
-        )}
+      <div className="flex flex-1 flex-col px-4 ">
+        {/* error messages */}
+        <div className="mb-3">
+          {!isOnline && (
+            <Alert
+              type="warning"
+              showIcon
+              icon={<WifiOff size={18} strokeWidth={1} />}
+              title="ارتباط شبکه برقرار نیست."
+              description="اتصال اینترنت خود را بررسی کنید و دوباره تلاش کنید."
+            />
+          )}
+
+          {otpError && <Alert type="error" showIcon title={otpError} />}
+
+          {verifyError && <Alert type="error" showIcon title={verifyError} />}
+
+          {refreshError && <Alert type="error" showIcon title={refreshError} />}
+
+          {decodeError && <Alert type="error" showIcon title={decodeError} />}
+        </div>
 
         <div className={` p-1 mb-3`}>
           <Segmented
@@ -210,7 +323,6 @@ export default function LoginPage() {
               size="medium"
               preserve={false}
               disabled={!isOnline}
-              onFinish={handlePasswordFinish}
             >
               <Form.Item
                 name="identifier"
@@ -258,7 +370,6 @@ export default function LoginPage() {
                 htmlType="submit"
                 block
                 shape="round"
-                loading={submitting}
                 icon={<Send {...iconProps} />}
               >
                 ورود
@@ -300,7 +411,7 @@ export default function LoginPage() {
                 htmlType="submit"
                 block
                 shape="round"
-                loading={sendingCode}
+                loading={isSendingOtp}
                 icon={<Send {...iconProps} />}
               >
                 ارسال کد
@@ -332,11 +443,13 @@ export default function LoginPage() {
                 ]}
               >
                 <Input.OTP
+                  ref={otpInputRef}
                   length={OTP_LENGTH}
                   size="large"
                   className="w-full text-[13px]"
                   style={{ direction: "ltr" }}
                   inputMode="numeric"
+                  autoComplete="one-time-code"
                 />
               </Form.Item>
 
@@ -346,7 +459,7 @@ export default function LoginPage() {
                   htmlType="submit"
                   block
                   shape="round"
-                  loading={submitting}
+                  loading={isVerifyingOtp}
                   icon={<Send {...iconProps} />}
                 >
                   ورود
@@ -357,7 +470,7 @@ export default function LoginPage() {
                     type="link"
                     size="small"
                     className="!px-0 !text-[12px]"
-                    loading={sendingCode}
+                    loading={isSendingOtp}
                     onClick={handleResendCode}
                   >
                     ارسال مجدد

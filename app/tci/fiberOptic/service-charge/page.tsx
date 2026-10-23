@@ -5,13 +5,13 @@
  *
  * @returns صفحه شارژ مجدد سرویس فیبر نوری
  */
-import { IntroductionHeader } from "@/components/Introduction/Header";
+import { Header } from "@/components/Header/Header";
 import { ServiceChargeForm } from "@/components/Tci/ServiceChargeForm";
 
 export default function FiberServiceChargePage() {
   return (
     <main className="flex flex-col gap-3">
-      <IntroductionHeader title="شارژ مجدد فیبر نوری" />
+      <Header title="شارژ مجدد فیبر نوری" />
       <section className="bg-white rounded-3xl shadow-[0px_4px_12px_0px_rgba(175,186,205,0.37)] p-4">
         <h2 className="text-[#081D5D] text-[13px] font-bold text-right mb-3">
           شارژ مجدد سرویس

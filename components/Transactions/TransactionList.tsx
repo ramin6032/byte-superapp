@@ -62,7 +62,7 @@ export function TransactionList({
 
   if (transactions.length === 0) {
     return (
-      <section className="bg-white rounded-3xl shadow-[0px_4px_12px_0px_rgba(175,186,205,0.37)] p-4">
+      <section className="bg-white rounded-3xl  p-4">
         <p className="text-[#52759F] text-[12px] font-light text-center py-4">
           تراکنشی یافت نشد
         </p>
@@ -71,10 +71,7 @@ export function TransactionList({
   }
 
   return (
-    <section className="bg-white rounded-3xl shadow-[0px_4px_12px_0px_rgba(175,186,205,0.37)] p-4 space-y-2">
-      <h2 className="text-[#081D5D] text-[13px] font-bold text-right">
-        تراکنش‌های من
-      </h2>
+    <section className="bg-white rounded-3xl flex-1  p-3 space-y-2 overflow-y-auto ">
       <div className="space-y-1">
         {transactions.map((transaction) => (
           <TransactionItem
@@ -139,11 +136,7 @@ function TransactionItem({
           <Tag color={status.tagColor} className="!text-[10px] !m-0 !px-1.5">
             {status.label}
           </Tag>
-          <ChevronLeft
-            strokeWidth={1}
-            size={20}
-            className="text-[#52759F]"
-          />
+          <ChevronLeft strokeWidth={1} size={20} className="text-[#52759F]" />
         </div>
       </div>
     </button>

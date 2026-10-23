@@ -8,7 +8,7 @@ export type NavItem = {
     strokeWidth?: number;
     className?: string;
   }>;
-  route?: string;
+  route: string;
   isActive?: boolean;
   badge?: string | number;
 };
@@ -34,10 +34,10 @@ export const NAV_ITEMS: NavItem[] = [
     isActive: true,
   },
   {
-    id: "my-services",
-    label: "سرویس من",
+    id: "subscriptions",
+    label: "اشتراک من",
     icon: Smartphone,
-    route: "/my-services",
+    route: "/subscriptions",
   },
   {
     id: "transactions",

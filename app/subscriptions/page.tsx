@@ -5,7 +5,7 @@
  *
  * @returns صفحه اشتراک‌ها
  */
-import { IntroductionHeader } from "@/components/Introduction/Header";
+import { Header } from "@/components/Header/Header";
 import { SubscriptionSelector } from "@/components/subscriptions/SubscriptionSelector";
 import data from "@/components/subscriptions/subscriptionsData.json";
 
@@ -44,7 +44,7 @@ export default function AdslPage() {
 
   return (
     <main className="flex flex-col gap-3">
-      <IntroductionHeader title="اشتراک های من" />
+      <Header title="اشتراک های من" />
       <SubscriptionSelector
         groups={groups}
         selectedId={allSubscriptions[0].id}

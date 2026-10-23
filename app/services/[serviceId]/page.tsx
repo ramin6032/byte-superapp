@@ -8,10 +8,10 @@
  * @returns صفحه جزئیات سرویس یا notFound
  */
 import { notFound } from "next/navigation";
-import { IntroductionHeader } from "@/components/Introduction/Header";
 import { ServicesIntroduction } from "@/components/Introduction/ServicesIntroduction";
 import { SubmitRequestButton } from "@/components/Introduction/SubmitRequestButton";
 import data from "@/components/Introduction/servicesIntroduction.json";
+import { Header } from "@/components/Header/Header";
 
 /**
  * شکل داده‌های JSON معرفی خدمات.
@@ -54,7 +54,7 @@ export default async function ServiceDetailPage({
 
   return (
     <main className="flex flex-col gap-3">
-      <IntroductionHeader title={service.title} />
+      <Header title={service.title} />
       <ServicesIntroduction serviceId={serviceId} />
       <SubmitRequestButton />
     </main>

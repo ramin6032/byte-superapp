@@ -6,7 +6,7 @@
  *
  * @returns صفحه فهرست تراکنش‌ها
  */
-import { IntroductionHeader } from "@/components/Introduction/Header";
+import { Header } from "@/components/Header/Header";
 import { TransactionList } from "@/components/Transactions/TransactionList";
 import data from "@/components/Transactions/transactionsData.json";
 import type { TransactionsData } from "@/lib/transactions";
@@ -23,8 +23,8 @@ export default function TransactionsPage() {
   const { transactions } = data as TransactionsData;
 
   return (
-    <main className="flex flex-col gap-3">
-      <IntroductionHeader title="تراکنش ها" />
+    <main className="flex flex-col gap-3 overflow-y-auto">
+      <Header title="تراکنش های من " />
       <TransactionList transactions={transactions} />
     </main>
   );

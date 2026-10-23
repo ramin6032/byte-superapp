@@ -5,13 +5,13 @@
  *
  * @returns صفحه درخواست ADSL
  */
-import { IntroductionHeader } from "@/components/Introduction/Header";
 import { InternetRequestForm } from "@/components/InternetRequest/InternetRequestForm";
+import { Header } from "@/components/Header/Header";
 
 export default function AdslRequestPage() {
   return (
     <main className="flex flex-col gap-3">
-      <IntroductionHeader title="درخواست ADSL" />
+      <Header title="درخواست ADSL" />
       <InternetRequestForm
         title="درخواست سرویس اینترنت ADSL"
         description="اطلاعات هویتی و سرویس ADSL مورد نظر را تکمیل کنید."

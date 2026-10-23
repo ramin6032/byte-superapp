@@ -5,19 +5,19 @@
  *
  * @returns صفحه فهرست عملیات ADSL
  */
-import { IntroductionHeader } from "@/components/Introduction/Header";
 import {
   TciOperationList,
   type TciOperationsData,
 } from "@/components/Tci/TciOperationList";
 import data from "@/components/Adsl/adslData.json";
+import { Header } from "@/components/Header/Header";
 
 export default function AdslPage() {
   const { operations } = data as TciOperationsData;
 
   return (
     <main className="flex flex-col gap-3">
-      <IntroductionHeader title="عملیات ADSL" />
+      <Header title="عملیات ADSL" />
       <TciOperationList
         operations={operations}
         basePath="/tci/adsl"

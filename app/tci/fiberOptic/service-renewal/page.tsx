@@ -5,7 +5,7 @@
  *
  * @returns صفحه تمدید سرویس فیبر
  */
-import { IntroductionHeader } from "@/components/Introduction/Header";
+import { Header } from "@/components/Header/Header";
 import { ServiceRenewalForm } from "@/components/Tci/ServiceRenewalForm";
 
 /**
@@ -16,7 +16,7 @@ import { ServiceRenewalForm } from "@/components/Tci/ServiceRenewalForm";
 export default function FiberServiceRenewalPage() {
   return (
     <main className="flex flex-col gap-3">
-      <IntroductionHeader title="تمدید سرویس فیبر نوری" />
+      <Header title="تمدید سرویس فیبر نوری" />
       <section className="bg-white rounded-3xl shadow-[0px_4px_12px_0px_rgba(175,186,205,0.37)] p-4">
         <h2 className="text-[#081D5D] text-[13px] font-bold text-right mb-3">
           تمدید سرویس

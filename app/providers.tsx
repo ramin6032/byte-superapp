@@ -1,7 +1,10 @@
 "use client";
 
-import { Header } from "@/components/HomePage/Header/Header";
 import { Navbar } from "@/components/HomePage/Navbar/Navbar";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { getQueryClient } from "@/lib/get-query-client";
+
 /**
  * فراهم‌کننده‌های سراسری اپلیکیشن (Ant Design، RTL، تم، لوکال).
  *
@@ -60,17 +63,21 @@ const theme: ThemeConfig = {
  * @returns پوشش‌دهنده ConfigProvider و AntdApp
  */
 export function Providers({ children }: { children: React.ReactNode }) {
+  const queryClient = getQueryClient();
   return (
-    <ConfigProvider direction="rtl" locale={faIR} theme={theme}>
-      <AntdApp>
-        <div className="min-h-dvh h-dvh bg-[#F3F7FE] ">
-          <div className="w-full max-w-xl h-full flex flex-col justify-between mx-auto">
-            {children}
-            {/* Bottom Navigation */}
-            <Navbar />
+    <QueryClientProvider client={queryClient}>
+      <ConfigProvider direction="rtl" locale={faIR} theme={theme}>
+        <AntdApp>
+          <div className="min-h-dvh h-dvh bg-[#F3F7FE] ">
+            <div className="w-full max-w-xl h-full flex flex-col gap-3 justify-between mx-auto p-1">
+              {children}
+              {/* Bottom Navigation */}
+              <Navbar />
+            </div>
           </div>
-        </div>
-      </AntdApp>
-    </ConfigProvider>
+        </AntdApp>
+      </ConfigProvider>
+      <ReactQueryDevtools />
+    </QueryClientProvider>
   );
 }

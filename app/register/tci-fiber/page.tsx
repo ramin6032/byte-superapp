@@ -5,7 +5,7 @@
  *
  * @returns صفحه درخواست فیبر نوری
  */
-import { IntroductionHeader } from "@/components/Introduction/Header";
+import { Header } from "@/components/Header/Header";
 import { InternetRequestForm } from "@/components/InternetRequest/InternetRequestForm";
 
 /**
@@ -17,8 +17,8 @@ import { InternetRequestForm } from "@/components/InternetRequest/InternetReques
  */
 export default function FiberRequestPage() {
   return (
-    <main className="flex flex-col gap-3">
-      <IntroductionHeader title="درخواست فیبر نوری" />
+    <main className="flex flex-col gap-3 overflow-y-auto">
+      <Header title="درخواست فیبر نوری" />
       <InternetRequestForm
         title="درخواست سرویس فیبر نوری"
         description="اطلاعات هویتی و سرویس فیبر نوری مورد نظر را تکمیل کنید."

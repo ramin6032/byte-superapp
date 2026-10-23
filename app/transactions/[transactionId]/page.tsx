@@ -9,13 +9,10 @@
  * @returns صفحه جزئیات تراکنش یا notFound
  */
 import { notFound } from "next/navigation";
-import { IntroductionHeader } from "@/components/Introduction/Header";
 import { TransactionDetail } from "@/components/Transactions/TransactionDetail";
 import data from "@/components/Transactions/transactionsData.json";
-import {
-  findTransaction,
-  type TransactionsData,
-} from "@/lib/transactions";
+import { findTransaction, type TransactionsData } from "@/lib/transactions";
+import { Header } from "@/components/Header/Header";
 
 /**
  * رندر صفحه جزئیات تراکنش متناسب با پارامتر داینامیک مسیر.
@@ -40,7 +37,7 @@ export default async function TransactionDetailPage({
 
   return (
     <main className="flex flex-col gap-3">
-      <IntroductionHeader title="جزئیات تراکنش" />
+      <Header title="جزئیات تراکنش" />
       <TransactionDetail transaction={transaction} />
     </main>
   );

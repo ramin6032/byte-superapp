@@ -153,83 +153,86 @@ export function IdentityStepForm({
   };
 
   return (
-    <Form<IdentityFormValues>
-      form={form}
-      layout="vertical"
-      requiredMark={false}
-      size="medium"
-      initialValues={initialValues}
-      onFinish={handleFinish}
-    >
-      <Form.Item
-        name="fullName"
-        label="نام و نام خانوادگی"
-        rules={fullNameRules}
-        className="!mb-4"
+    <div className="space-y-6 flex-1">
+      <h3 className=" font-bold text-[16px]">اطلاعات هویتی</h3>
+      <Form<IdentityFormValues>
+        form={form}
+        layout="vertical"
+        requiredMark={false}
+        size="medium"
+        initialValues={initialValues}
+        onFinish={handleFinish}
       >
-        <Input
-          {...inputProps}
-          prefix={<User className="text-[#52759F]" {...iconProps} />}
-          placeholder="مثال: سارا محمدی"
-        />
-      </Form.Item>
+        <Form.Item
+          name="fullName"
+          label="نام و نام خانوادگی"
+          rules={fullNameRules}
+          className="!mb-4"
+        >
+          <Input
+            {...inputProps}
+            prefix={<User className="text-[#52759F]" {...iconProps} />}
+            placeholder="مثال: سارا محمدی"
+          />
+        </Form.Item>
 
-      <Form.Item
-        name="mobile"
-        label="شماره موبایل"
-        rules={mobileRules}
-        normalize={onlyDigits}
-        className="!mb-4"
-      >
-        <Input
-          {...inputProps}
-          prefix={<Phone className="text-[#52759F]" {...iconProps} />}
-          placeholder="۰۹۱۲۳۴۵۶۷۸۹"
-          inputMode="numeric"
-          maxLength={11}
-          dir="ltr"
-        />
-      </Form.Item>
+        <Form.Item
+          name="mobile"
+          label="شماره موبایل"
+          rules={mobileRules}
+          normalize={onlyDigits}
+          className="!mb-4"
+        >
+          <Input
+            {...inputProps}
+            prefix={<Phone className="text-[#52759F]" {...iconProps} />}
+            placeholder="۰۹۱۲۳۴۵۶۷۸۹"
+            inputMode="numeric"
+            maxLength={11}
+            dir="ltr"
+          />
+        </Form.Item>
 
-      <Form.Item
-        name="nationalId"
-        label="کد ملی"
-        rules={nationalIdRules}
-        normalize={onlyDigits}
-        className="!mb-4"
-      >
-        <Input
-          {...inputProps}
-          prefix={<Hash className="text-[#52759F]" {...iconProps} />}
-          placeholder="۱۰ رقم بدون خط تیره"
-          inputMode="numeric"
-          maxLength={10}
-          dir="ltr"
-        />
-      </Form.Item>
+        <Form.Item
+          name="nationalId"
+          label="کد ملی"
+          rules={nationalIdRules}
+          normalize={onlyDigits}
+          className="!mb-4"
+        >
+          <Input
+            {...inputProps}
+            prefix={<Hash className="text-[#52759F]" {...iconProps} />}
+            placeholder="۱۰ رقم بدون خط تیره"
+            inputMode="numeric"
+            maxLength={10}
+            dir="ltr"
+          />
+        </Form.Item>
 
-      <Form.Item
-        name="address"
-        label="نشانی"
-        rules={addressRules}
-        className="!mb-4"
-      >
-        <Input.TextArea
-          autoSize={{ minRows: 2, maxRows: 4 }}
-          className="text-[13px]"
-          placeholder="استان، شهر، خیابان، کوچه و پلاک"
-        />
-      </Form.Item>
+        <Form.Item
+          name="address"
+          label="نشانی"
+          rules={addressRules}
+          className="!mb-4"
+        >
+          <Input.TextArea
+            autoSize={{ minRows: 2, maxRows: 4 }}
+            className="text-[13px]"
+            placeholder="استان، شهر، خیابان، کوچه و پلاک"
+          />
+        </Form.Item>
 
-      <Button
-        type="primary"
-        htmlType="submit"
-        block
-        shape="round"
-        loading={isLoading}
-      >
-        {submitLabel}
-      </Button>
-    </Form>
+        <Button
+          type="primary"
+          htmlType="submit"
+          block
+          shape="round"
+          loading={isLoading}
+        >
+          {submitLabel}
+        </Button>
+      </Form>
+    </div>
   );
 }
